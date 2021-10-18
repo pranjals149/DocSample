@@ -154,7 +154,7 @@ function FetchReports() {
                 </ElseContainer>
             } */}
 
-            {data?.documents.length > 0 ? data?.documents.map((report) => (
+            {data?.documents?.length > 0 ? data?.documents.map((report) => (
                 <main className={classes.layout}>
 
                     <Paper className={classes.paper}>
