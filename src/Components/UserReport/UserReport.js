@@ -75,71 +75,64 @@ export default function UserReport() {
     const mutation = useMutation(newData => {
         console.log(JSON.stringify(newData))
 
-        return axios.post(`https://firestore.googleapis.com/v1/projects/unite-d0291/databases/(default)/documents:commit/symptomReports/${userEmail}/reports/`, newData, {
-            "Access-Control-Allow-Origin": "*",
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        })
+        db
+            .collection("symptomReports")
+            .doc(userEmail)
+            .collection("reports")
+            .add(newData)
+
+        history.push("/home")
+
+        toast.success("Your report is saved with us. One of our experts will contact you shortly")
     })
 
-    const saveReport = (e) => {
-        //e.preventDefault()
+    // const saveReport = (e) => {
+    //     e.preventDefault()
 
-        // if (phone.length !== 10) {
-        //     toast.error("Please enter a valid phone number")
-        //     return;
-        // }
+    //     if (phone.length !== 10) {
+    //         toast.error("Please enter a valid phone number")
+    //         return;
+    //     }
 
-        // db
-        //     .collection("symptomReports")
-        //     .doc(userEmail)
-        //     .collection("reports")
-        //     .add({
-        //         email: userEmail,
-        //         name: username,
-        //         phone: phone,
-        //         gender: gender,
-        //         age: age,
-        //         fever: fever,
-        //         Serious_Symptom: seriousSymptom,
-        //         Other_Symptom: otherSymptom,
-        //         risk_factor: risk,
-        //         Additional_Risk: additionalRisk,
-        //         time: firebase.firestore.FieldValue.serverTimestamp(),
-        //     })
+    //     db
+    //         .collection("symptomReports")
+    //         .doc(userEmail)
+    //         .collection("reports")
+    //         .add({
+    //             email: userEmail,
+    //             name: username,
+    //             phone: phone,
+    //             gender: gender,
+    //             age: age,
+    //             fever: fever,
+    //             Serious_Symptom: seriousSymptom,
+    //             Other_Symptom: otherSymptom,
+    //             risk_factor: risk,
+    //             Additional_Risk: additionalRisk,
+    //             time: firebase.firestore.FieldValue.serverTimestamp(),
+    //         })
 
-        // db
-        //     .collection("expertReports")
-        //     .add({
-        //         email: userEmail,
-        //         photo: userPhoto,
-        //         name: username,
-        //         phone: phone,
-        //         gender: gender,
-        //         age: age,
-        //         fever: fever,
-        //         Serious_Symptom: seriousSymptom,
-        //         Other_Symptom: otherSymptom,
-        //         risk_factor: risk,
-        //         Additional_Risk: additionalRisk,
-        //         time: firebase.firestore.FieldValue.serverTimestamp(),
-        //     })
+    //     db
+    //         .collection("expertReports")
+    //         .add({
+    //             email: userEmail,
+    //             photo: userPhoto,
+    //             name: username,
+    //             phone: phone,
+    //             gender: gender,
+    //             age: age,
+    //             fever: fever,
+    //             Serious_Symptom: seriousSymptom,
+    //             Other_Symptom: otherSymptom,
+    //             risk_factor: risk,
+    //             Additional_Risk: additionalRisk,
+    //             time: firebase.firestore.FieldValue.serverTimestamp(),
+    //         })
 
-        // history.push("/home")
+    // history.push("/home")
 
-        // toast.success("Your report is saved with us. One of our experts will contact you shortly")
-        mutation.mutate({
-            email: userEmail,
-            name: username,
-            phone: phone,
-            gender: gender,
-            age: age,
-            fever: fever,
-            Serious_Symptom: seriousSymptom,
-            Other_Symptom: otherSymptom,
-            risk_factor: risk,
-            Additional_Risk: additionalRisk,
-        })
-    }
+    // toast.success("Your report is saved with us. One of our experts will contact you shortly")
+    // }
 
     return (
         <React.Fragment>
