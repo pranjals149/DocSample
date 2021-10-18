@@ -76,7 +76,8 @@ export default function UserReport() {
         console.log(JSON.stringify(newData))
 
         return axios.post(`https://firestore.googleapis.com/v1/projects/unite-d0291/databases/(default)/documents:commit/symptomReports/${userEmail}/reports/`, newData, {
-            "Access-Control-Allow-Origin": "https://firestore.googleapis.com/",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         })
     })
 
