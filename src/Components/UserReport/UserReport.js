@@ -208,7 +208,6 @@ export default function UserReport() {
                 <ButtonContainer>
                     <Button variant="contained" color="primary" className={classes.final__button} onClick={() => {
                         mutation.mutate({
-
                             email: userEmail,
                             name: username,
                             phone: phone,
@@ -219,7 +218,6 @@ export default function UserReport() {
                             Other_Symptom: otherSymptom,
                             risk_factor: risk,
                             Additional_Risk: additionalRisk
-
                         })
                     }}>
                         Save report and Consult to an expert
