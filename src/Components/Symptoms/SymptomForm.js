@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setUserSymptomDetails } from '../../features/symptom/symptomSlice';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
+import { useMutation } from 'react-query';
 
 const useStyles = makeStyles((theme) => ({
     symptomsHeading: {
@@ -75,6 +76,32 @@ export default function SymptomForm() {
 
         history.push('/userReport')
     }
+
+    // Used useMutation here for posting the data in the redux store. The data to be pushed is formData which is being passed in the onClick function while pressing the Next button.
+    // const mutation = useMutation(formData => {
+    //     if (!gender.length) {
+    //         toast.error("You must provide your gender")
+    //         return;
+    //     }
+
+    //     if (!age.length) {
+    //         toast.error("You must provide your age")
+    //         return;
+    //     }
+
+    //     if (!fever.length) {
+    //         toast.error("You must provide the answer - whether you have fever or not")
+    //         return;
+    //     }
+
+    //     if (!seriousSymptom.length) {
+    //         toast.error("You must provide your symptoms")
+    //         return;
+    //     }
+
+    //     dispatch(setUserSymptomDetails(formData))
+    //     history.push('/userReport')
+    // })
 
     return (
         <React.Fragment>

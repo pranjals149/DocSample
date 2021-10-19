@@ -76,15 +76,12 @@ function FetchReports() {
     //         })
     // }, [])
 
+    //Here we have used useQuery for fetching the reports from the database for a particular user. The useQuery return an object with three fields namely isLoading(loading state), Error(if there is an error fetching the data), data(the response from the API)
     const { isLoading, error, data } = useQuery('reportsData', () =>
         fetch(`https://firestore.googleapis.com/v1/projects/unite-d0291/databases/(default)/documents/symptomReports/${userEmail}/reports`).then(res =>
             res.json()
         )
     )
-
-    if (isLoading) return 'Loading...'
-
-    if (error) return 'An error has occurred: ' + error.message
 
     return (
         <React.Fragment>
@@ -158,6 +155,8 @@ function FetchReports() {
                 </ElseContainer>
             } */}
 
+
+
             {data?.documents?.length > 0 ? data?.documents.map((report) => (
                 <main className={classes.layout}>
 
@@ -213,6 +212,14 @@ function FetchReports() {
                 </main>
             )) :
                 <ElseContainer>
+                    {isLoading && (
+                        <h2>Loading ...</h2>
+                    )}
+
+                    {error && (
+                        <h2>An error has occurred: {error.message}</h2>
+                    )}
+
                     <h1>No Reports Generated yet !!</h1>
                 </ElseContainer>
             }

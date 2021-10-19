@@ -4,6 +4,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SymptomForm from './SymptomForm';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient()
 
 const useStyles = makeStyles((theme) => ({
     layout: {
@@ -44,7 +47,10 @@ export default function Symptoms() {
                     <React.Fragment>
 
                         <React.Fragment>
-                            <SymptomForm />
+                            <QueryClientProvider client={queryClient}>
+                                <SymptomForm />
+                            </QueryClientProvider>
+                            {/* <SymptomForm /> */}
                         </React.Fragment>
 
                     </React.Fragment>

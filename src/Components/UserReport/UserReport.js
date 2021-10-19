@@ -72,8 +72,13 @@ export default function UserReport() {
 
     const [phone, setPhone] = useState("")
 
+
+    //Used useMutation for posting the data in the firebase firestore(database). The data to be pushed is newData which is being passed in the onClick function while pressing the Save report button.
     const mutation = useMutation(newData => {
-        console.log(JSON.stringify(newData))
+        if (phone.length !== 10) {
+            toast.error("Please enter a valid phone number")
+            return;
+        }
 
         db
             .collection("symptomReports")
@@ -89,10 +94,10 @@ export default function UserReport() {
     // const saveReport = (e) => {
     //     e.preventDefault()
 
-    //     if (phone.length !== 10) {
-    //         toast.error("Please enter a valid phone number")
-    //         return;
-    //     }
+    // if (phone.length !== 10) {
+    //     toast.error("Please enter a valid phone number")
+    //     return;
+    // }
 
     //     db
     //         .collection("symptomReports")
@@ -217,7 +222,8 @@ export default function UserReport() {
                             Serious_Symptom: seriousSymptom,
                             Other_Symptom: otherSymptom,
                             risk_factor: risk,
-                            Additional_Risk: additionalRisk
+                            Additional_Risk: additionalRisk,
+                            time: firebase.firestore.FieldValue.serverTimestamp(),
                         })
                     }}>
                         Save report and Consult to an expert
