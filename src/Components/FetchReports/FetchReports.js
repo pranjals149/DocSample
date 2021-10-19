@@ -62,21 +62,7 @@ function FetchReports() {
     const userEmail = useSelector(selectUserEmail)
     const userPhoto = useSelector(selectUserPhoto)
 
-    // const [reports, setReports] = useState([])
-
-    // useEffect(() => {
-
-    //     db
-    //         .collection("symptomReports")
-    //         .doc(userEmail)
-    //         .collection("reports")
-    //         .orderBy('time', 'desc')
-    //         .onSnapshot((snapshot) => {
-    //             setReports(snapshot.docs.map((doc) => ({ id: doc.id, report: doc.data() })))
-    //         })
-    // }, [])
-
-    //Here we have used useQuery for fetching the reports from the database for a particular user. The useQuery return an object with three fields namely isLoading(loading state), Error(if there is an error fetching the data), data(the response from the API)
+    //Here we have used useQuery for fetching the reports from the database for a particular user. The useQuery returns an object with three fields namely isLoading(loading state), Error(if there is an error fetching the data), data(the response from the API)
     const { isLoading, error, data } = useQuery('reportsData', () =>
         fetch(`https://firestore.googleapis.com/v1/projects/unite-d0291/databases/(default)/documents/symptomReports/${userEmail}/reports`).then(res =>
             res.json()
@@ -89,73 +75,6 @@ function FetchReports() {
             <CssBaseline />
 
             <h1 className={classes.report__heading}>Your saved Reports</h1>
-
-            {/* {reports.length > 0 ? reports.map((report) => (
-                <main className={classes.layout}>
-
-                    <Paper className={classes.paper}>
-
-                        <strong>Report Generated</strong> {" "}
-
-                        <ReactTimeago
-                            date={new Date(report.report.time?.toDate()).toUTCString()}
-                        />
-
-                        <p><strong>Report ID</strong> {report.id}</p>
-
-                        <Typography component="h1" variant="h4" align="center" style={{ paddingBottom: "20px" }}>
-                            Your Report
-                        </Typography>
-
-                        <React.Fragment>
-                            <ImageContainer>
-                                <img src={userPhoto} alt="" />
-                            </ImageContainer>
-
-                            <RowContainer>
-
-                                <NameContainer>
-                                    <h4>Name - {report.report.name}</h4>
-                                </NameContainer>
-
-                                <EmailContainer>
-                                    <p><strong>Email</strong> - {report.report.email}</p>
-                                </EmailContainer>
-
-                            </RowContainer>
-
-                            <InfoContainer>
-                                <p><strong>Gender</strong> - {report.report.gender}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>Age</strong> - {report.report.age}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>fever</strong> - {report.report.fever}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>Symptoms</strong> - {report.report.Serious_Symptom}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>Other Symptom</strong> - {report.report.Other_Symptom}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>Risk</strong> - {report.report.risk_factor}</p>
-                            </InfoContainer>
-                            <InfoContainer>
-                                <p><strong>Additional Risks</strong> - {report.report.Additional_Risk}</p>
-                            </InfoContainer>
-                        </React.Fragment>
-                    </Paper>
-
-                </main>
-            )) :
-                <ElseContainer>
-                    <h1>No Reports Generated yet !!</h1>
-                </ElseContainer>
-            } */}
-
-
 
             {data?.documents?.length > 0 ? data?.documents.map((report) => (
                 <main className={classes.layout}>
