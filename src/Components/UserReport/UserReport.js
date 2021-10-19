@@ -91,54 +91,6 @@ export default function UserReport() {
         toast.success("Your report is saved with us. One of our experts will contact you shortly")
     })
 
-    // const saveReport = (e) => {
-    //     e.preventDefault()
-
-    // if (phone.length !== 10) {
-    //     toast.error("Please enter a valid phone number")
-    //     return;
-    // }
-
-    //     db
-    //         .collection("symptomReports")
-    //         .doc(userEmail)
-    //         .collection("reports")
-    //         .add({
-    //             email: userEmail,
-    //             name: username,
-    //             phone: phone,
-    //             gender: gender,
-    //             age: age,
-    //             fever: fever,
-    //             Serious_Symptom: seriousSymptom,
-    //             Other_Symptom: otherSymptom,
-    //             risk_factor: risk,
-    //             Additional_Risk: additionalRisk,
-    //             time: firebase.firestore.FieldValue.serverTimestamp(),
-    //         })
-
-    //     db
-    //         .collection("expertReports")
-    //         .add({
-    //             email: userEmail,
-    //             photo: userPhoto,
-    //             name: username,
-    //             phone: phone,
-    //             gender: gender,
-    //             age: age,
-    //             fever: fever,
-    //             Serious_Symptom: seriousSymptom,
-    //             Other_Symptom: otherSymptom,
-    //             risk_factor: risk,
-    //             Additional_Risk: additionalRisk,
-    //             time: firebase.firestore.FieldValue.serverTimestamp(),
-    //         })
-
-    // history.push("/home")
-
-    // toast.success("Your report is saved with us. One of our experts will contact you shortly")
-    // }
-
     return (
         <React.Fragment>
 
